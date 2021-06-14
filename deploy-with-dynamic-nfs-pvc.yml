@@ -4,22 +4,22 @@ metadata:
   annotations:
     kubernetes.io/change-cause: "Nginx Image 1.20 Version"
   labels:
-    apps: web2
-  name: web2
+    apps: nginx-webserver
+  name: nginx-webserver
 spec:
   replicas: 2
   selector:
     matchLabels:
-      apps: web2
+      apps: nginx-webserver
   template:
     metadata:
       labels:
-        apps: web2
+        apps: nginx-webserver
     spec:
       volumes:
         - name: dynamic-nfs-volume
           persistentVolumeClaim:
-            claimName: nginx1
+            claimName: nginx-data1
       initContainers:
         - name: webdata
           image: busybox
@@ -29,7 +29,7 @@ spec:
               mountPath: /webdata
       containers:
         - name: nginx
-          image: nginx:latest
+          image: nginx:1.20
           resources:
             requests:
               cpu: 100m
