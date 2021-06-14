@@ -6,7 +6,7 @@ metadata:
   name: svc1
 spec:
   selector:
-    apps: web2
+    apps: nginx-webserver
   type: NodePort
   ports:
     - name: myport
