@@ -28,7 +28,7 @@ spec:
               mountPath: /webdata
       containers:
         - name: nginx
-          image: nginx:1.20
+          image: nginx:alpine
           resources:
             requests:
               cpu: 100m
