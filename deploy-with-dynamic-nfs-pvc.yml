@@ -17,15 +17,14 @@ spec:
         apps: nginx-webserver
     spec:
       volumes:
-        - name: dynamic-nfs-volume
-          persistentVolumeClaim:
-            claimName: nginx-data1
+        - name: emptydir
+          emptyDir: {}
       initContainers:
         - name: webdata
           image: busybox
           command: ["/bin/sh","-c",'echo "<h1> Welcome To Kubernetes Demo </h1>" > /webdata/index.html']
           volumeMounts:
-            - name: dynamic-nfs-volume
+            - name: emptydir
               mountPath: /webdata
       containers:
         - name: nginx
@@ -36,7 +35,7 @@ spec:
             limits:
               cpu: 100m
           volumeMounts:
-            - name: dynamic-nfs-volume
+            - name: emptydir
               mountPath: "/usr/share/nginx/html"
           ports:
             - containerPort: 80
