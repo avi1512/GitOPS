@@ -16,6 +16,8 @@ spec:
       labels:
         apps: nginx-webserver
     spec:
+      nodeSelector:
+        gitops: node1
       volumes:
         - name: emptydir
           emptyDir: {}
