@@ -7,9 +7,9 @@ metadata:
 spec:
   selector:
     apps: nginx-webserver
-  type: NodePort
+  type: ClusterIP
   ports:
     - name: myport
       port: 80
-      nodePort: 32324
+      targetPort: 80
 
